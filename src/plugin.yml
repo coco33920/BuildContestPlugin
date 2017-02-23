@@ -1,0 +1,7 @@
+name: BuildContest
+version: S1.0
+author: coco33920
+main: fr.colin.buildcontest.BuildContest
+commands:
+  impose:
+  libre:
