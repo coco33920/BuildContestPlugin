@@ -28,7 +28,7 @@ public class ScoreboardLobby {
         score3.setScore(3);
         Score score4 =  objective.getScore("§b ");
         score4.setScore(2);
-        Score score5 = objective.getScore("§cBonne chance :) !");
+        Score score5 = objective.getScore("§6Bonne chance :) !");
         score5.setScore(1);
         Score score6 = objective.getScore("§5 ");
         score6.setScore(0);

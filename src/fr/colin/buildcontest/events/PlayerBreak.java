@@ -1,5 +1,6 @@
 package fr.colin.buildcontest.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -7,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 
 /**
  * Created by colin on 23/02/2017.
@@ -47,11 +50,23 @@ public class PlayerBreak implements Listener {
 
 
         if(material == Material.BEDROCK || material == Material.BARRIER ){
-            if(player.isOp()) {
+            if(!player.isOp()) {
                 event.setCancelled(true);
             }
 
         }
+
+
+    }
+
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent event){
+        event.setCancelled(true);
+    }
+    @EventHandler
+    public void onWorldLoad(WorldLoadEvent event){
+
+        event.getWorld().setGameRuleValue("doDaylightCycle", "false");
 
 
     }

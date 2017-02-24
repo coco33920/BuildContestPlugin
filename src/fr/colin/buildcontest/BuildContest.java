@@ -1,5 +1,7 @@
 package fr.colin.buildcontest;
 
+import fr.colin.buildcontest.commands.TimeImpose;
+import fr.colin.buildcontest.commands.TimeLibre;
 import fr.colin.buildcontest.events.PlayerBreak;
 import fr.colin.buildcontest.events.PlayerJoin;
 import fr.colin.buildcontest.events.RegisterEvents;
@@ -10,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class BuildContest extends JavaPlugin{
 
+    private static BuildContest instance;
 
     //TODO :
     //Barriere indestructible
@@ -19,7 +22,18 @@ public class BuildContest extends JavaPlugin{
 
     @Override
     public void onEnable() {
+        instance = this;
         new RegisterEvents(this, new PlayerBreak(), new PlayerJoin());
+        getCommand("libre").setExecutor(new TimeLibre());
+        getCommand("impose").setExecutor(new TimeImpose());
         super.onEnable();
+
+
+
+    }
+
+
+    public static BuildContest getInstance() {
+        return instance;
     }
 }
