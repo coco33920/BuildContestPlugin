@@ -1,5 +1,6 @@
 package fr.colin.buildcontest.events;
 
+import fr.colin.buildcontest.GameState;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -20,6 +21,11 @@ public class PlayerBreak implements Listener {
     @EventHandler
     public void onPlayerBreak(BlockBreakEvent event){
 
+
+        if(GameState.getCurrentState().equals(GameState.LOBBY)){
+            event.setCancelled(true);
+            return;
+        }
 
         Player player = event.getPlayer();
 
@@ -42,6 +48,11 @@ public class PlayerBreak implements Listener {
 
     @EventHandler
     public void onPlayerPlace(BlockPlaceEvent event){
+
+        if(GameState.getCurrentState().equals(GameState.LOBBY)){
+            event.setCancelled(true);
+            return;
+        }
 
 
         Player player = event.getPlayer();

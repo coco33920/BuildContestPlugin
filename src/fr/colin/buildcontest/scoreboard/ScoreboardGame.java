@@ -27,7 +27,7 @@ public class ScoreboardGame {
                 score1.setScore(7);
                 Score score2 = objective.getScore("§a ");
                 score2.setScore(6);
-                Score score3 = objective.getScore("§cThème principal : §aNeige & Ski");
+                Score score3 = objective.getScore("§cThème principal : §aLibre !");
                 score3.setScore(5);
                 Score score4 = objective.getScore("§b ");
                 score4.setScore(4);
@@ -76,7 +76,7 @@ public class ScoreboardGame {
             score1.setScore(7);
             Score score2 = objective.getScore("§a ");
             score2.setScore(6);
-            Score score3 = objective.getScore("§cThème principal : §aNeige & Ski");
+            Score score3 = objective.getScore("§cThème principal : §aNeige & Hiver");
             score3.setScore(5);
             Score score4 = objective.getScore("§b ");
             score4.setScore(4);

@@ -24,7 +24,7 @@ public class ScoreboardLobby {
         score1.setScore(5);
         Score score2 = objective.getScore("§a ");
         score2.setScore(4);
-        Score score3 = objective.getScore("§cThème principal : §aNeige & Ski");
+        Score score3 = objective.getScore("§cThème principal : §aNeige & Hiver");
         score3.setScore(3);
         Score score4 =  objective.getScore("§b ");
         score4.setScore(2);

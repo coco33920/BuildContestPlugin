@@ -1,7 +1,9 @@
 package fr.colin.buildcontest.scoreboard;
 
 import fr.colin.buildcontest.BuildContest;
+import fr.colin.buildcontest.GameState;
 import fr.colin.buildcontest.Utils;
+import fr.colin.buildcontest.VariableUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -14,16 +16,18 @@ public class ScoreboardTimer {
 
     public static ScoreboardTimer getInstance() {
         return ourInstance;
-    }
+}
 
     private ScoreboardTimer() {
     }
 
     private int task_libre;
     private int task_impose;
+    //public int time_libre = VariableUtils.getInstance().getVariable("TIME_LIBRE");
+    //public int time_impose = VariableUtils.getInstance().getVariable("TIME_IMPOSE");
+
     public int time_libre = 421;
     public int time_impose = 301;
-
 
     public void loadScoreboardTimeLibre() {
 
@@ -63,6 +67,7 @@ public class ScoreboardTimer {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.teleport(Utils.getLobby());
                         Bukkit.getScheduler().cancelTask(task_libre);
+                        GameState.setCurrentState(GameState.LOBBY);
                         ScoreboardLobby.generate(player);
                     }
                 }
@@ -76,13 +81,20 @@ public class ScoreboardTimer {
 
 
     public void loadScoreboardTimeImpose(String string) {
+
+
         task_impose = Bukkit.getScheduler().scheduleSyncRepeatingTask(BuildContest.getInstance(), new Runnable() {
+
             @Override
             public void run() {
 
+                String to = string;
+                if(string == null){
+                    to = "Erreur";
+                }
                 time_impose--;
                 if(time_impose == 300){
-                    ScoreboardGame.scoreboardImpose(string);
+                    ScoreboardGame.scoreboardImpose(to);
                 }
                 if (time_impose <= 300 && time_impose > 0) {
                     ScoreboardGame.resetTimeScoreboardImpose();
@@ -108,7 +120,10 @@ public class ScoreboardTimer {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.teleport(Utils.getLobby());
                         Bukkit.getScheduler().cancelTask(task_impose);
+                        GameState.setCurrentState(GameState.LOBBY);
                         ScoreboardLobby.generate(player);
+
+
                     }
                 }
 
